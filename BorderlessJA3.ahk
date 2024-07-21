@@ -279,14 +279,14 @@ disableBoxWindow() {
 	ShowTaskbar()
 	ClipCursor(False)
 	BlackBox.Hide()
+}
 
+enableBoxWindow() {
 	global idJA3Window
 	If not WinExist(idJA3Window) {
 		idJA3Window := WinWait(selectJA3Window)
 	}
-}
 
-enableBoxWindow() {
 	; https://gaming.stackexchange.com/a/17307
 	WinSetStyle("-0xC00000", idJA3Window) ; hide title bar
 	WinSetStyle("-0x800000", idJA3Window) ; hide thin-line border[]
