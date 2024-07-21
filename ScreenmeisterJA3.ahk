@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
-A_IconTip := "Borderless Jagged Alliance 3"
+A_IconTip := "Screenmeister for Jagged Alliance 3"
 
 IconPath := ".\JA3.ico"
 
@@ -17,8 +17,8 @@ A_TrayMenu.Add("&Quit", (*) => ExitApp(0))
 selectJA3Window := "ahk_class HaemimontGamesWindowClass1 ahk_exe JA3.exe"
 idJA3Window := WinWait(selectJA3Window)
 
-GroupAdd "JA3Borderless", selectJA3Window
-groupWindows := "ahk_group JA3Borderless"
+GroupAdd "JA3Screenmeister", selectJA3Window
+groupWindows := "ahk_group JA3Screenmeister"
 
 BlackBox := Gui("+ToolWindow -0xC00000", "Blackout screen for JA3")
 ; ToolWindow: no taskbar button, not shown in Task View (❖⭾)
@@ -27,14 +27,14 @@ BlackBox := Gui("+ToolWindow -0xC00000", "Blackout screen for JA3")
 BlackBox.BackColor := "Black"
 
 ; Create the settings window:
-wSettings := Gui("AlwaysOnTop -MaximizeBox -MinimizeBox","Borderless")
+wSettings := Gui("AlwaysOnTop -MaximizeBox -MinimizeBox","Screenmeister")
 wSettings.Open := False
 wSettings.MarginX := 24
 wSettings.MarginY := 24
 wSettings.OnEvent("Close", (*) => toggleSettingsWindow(False))
 wSettings.OnEvent("Escape", (*) => toggleSettingsWindow(False))
 
-GroupAdd "JA3Borderless", "ahk_id " . wSettings.Hwnd
+GroupAdd "JA3Screenmeister", "ahk_id " . wSettings.Hwnd
 
 textarea := wSettings.AddEdit("r4 w96", "")
 
@@ -114,7 +114,7 @@ parseResolutions(sResolutions) {
 }
 
 lResolutions := []
-IniPath := A_AppData . "\JA3mod.MOG.Borderless.ini"
+IniPath := A_AppData . "\JA3mod.MOG.Screenmeister.ini"
 AttributeString := FileExist(IniPath)
 If AttributeString {
 	global active := getState("active")
@@ -130,7 +130,7 @@ If AttributeString {
 
 FirstRun() {
 	MsgBox(
-		"This seems to be the first time you use the JA3 mod [MOG] Borderless."
+		"This seems to be the first time you use the JA3 mod [MOG] Screenmeister."
 		. "`n`nBefore toggling borderless mode, please make sure that JA3 is set to 'Windowed', not 'Fullscreen'!"
 		. "`n`nTo toggle borderless mode, hit F11."
 		. "`nThe settings window will be opened when you close this message."
